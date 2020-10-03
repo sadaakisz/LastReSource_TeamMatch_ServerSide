@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface TournamentService {
     Page<Tournament> getAllTournaments(Pageable pageable);
-    Page<Tournament> getAllTournamentsByPostId(Long postId, Pageable pageable);
+    Page<Tournament> getAllTournamentsByOrganizerId(Long organizerId, Pageable pageable);
     Tournament getTournamentById(Long tournamentId);
     Tournament createTournament(Tournament tournament);
     Tournament updateTournament(Long tournamentId, Tournament tournamentDetails);
