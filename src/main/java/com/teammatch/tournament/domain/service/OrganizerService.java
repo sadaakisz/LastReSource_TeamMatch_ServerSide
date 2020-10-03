@@ -9,6 +9,6 @@ public interface OrganizerService {
     Page<Organizer> getAllOrganizers(Pageable pageable);
     Organizer getOrganizerById(Long organizerId);
     Organizer createOrganizer(Organizer organizer);
-    Organizer updateOrganizer(Long organizerId, Organizer organizer);
+    Organizer updateOrganizer(Long organizerId, Organizer organizerRequest);
     ResponseEntity<?> deleteOrganizer(Long organizerId);
 }
