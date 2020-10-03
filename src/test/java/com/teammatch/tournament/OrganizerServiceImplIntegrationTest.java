@@ -32,7 +32,7 @@ public class OrganizerServiceImplIntegrationTest {
        }
    }
    @Test
-    @DisplayName("When getOrganizerByUserName  whith valid userName then Returns Organizer")
+    @DisplayName("When getOrganizerByUserName  with valid userName then Returns Organizer")
     public void whenGetOrganizerByUserNameWithValidUserNameTheReturnsOrganizer(){
        //Arrange
        String userName="user1";
