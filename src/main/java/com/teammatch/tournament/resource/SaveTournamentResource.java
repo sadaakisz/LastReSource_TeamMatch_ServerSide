@@ -12,11 +12,11 @@ public class SaveTournamentResource {
     @Size(min = 3, message = "Name needs to have between 3 to 50 characters")
     private String name;
     @NotNull
-    private Date fecha_inicio;
+    private Date startDate;
     @NotNull
-    private Date fecha_fin;
+    private Date endDate;
     @NotNull
-    private Date hora_inicio;
+    private Date startHour;
 
     public String getName() {
         return name;
@@ -27,30 +27,30 @@ public class SaveTournamentResource {
         return this;
     }
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public SaveTournamentResource setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
+    public SaveTournamentResource setStartDate(Date startDate) {
+        this.startDate = startDate;
         return this;
     }
 
-    public Date getFecha_fin() {
-        return fecha_fin;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public SaveTournamentResource setFecha_fin(Date fecha_fin) {
-        this.fecha_fin = fecha_fin;
+    public SaveTournamentResource setEndDate(Date endDate) {
+        this.endDate = endDate;
         return this;
     }
 
-    public Date getHora_inicio() {
-        return hora_inicio;
+    public Date getStartHour() {
+        return startHour;
     }
 
-    public SaveTournamentResource setHora_inicio(Date hora_inicio) {
-        this.hora_inicio = hora_inicio;
+    public SaveTournamentResource setStartHour(Date startHour) {
+        this.startHour = startHour;
         return this;
     }
 }
