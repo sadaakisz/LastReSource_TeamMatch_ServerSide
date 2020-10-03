@@ -1,30 +1,28 @@
 package com.teammatch.tournament.resource;
 
-import com.teammatch.tournament.domain.model.AuditModel;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
-public class TournamentResource extends AuditModel {
+public class SaveTournamentResource {
 
-    private Long id;
+    @NotNull(message = "Missing Tournament name")
+    @NotBlank
+    @Size(min = 3, message = "Name needs to have between 3 to 50 characters")
     private String name;
+    @NotNull
     private Date fecha_inicio;
+    @NotNull
     private Date fecha_fin;
+    @NotNull
     private Date hora_inicio;
-
-    public Long getId() {
-        return id;
-    }
-
-    public TournamentResource setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getName() {
         return name;
     }
 
-    public TournamentResource setName(String name) {
+    public SaveTournamentResource setName(String name) {
         this.name = name;
         return this;
     }
@@ -33,7 +31,7 @@ public class TournamentResource extends AuditModel {
         return fecha_inicio;
     }
 
-    public TournamentResource setFecha_inicio(Date fecha_inicio) {
+    public SaveTournamentResource setFecha_inicio(Date fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
         return this;
     }
@@ -42,7 +40,7 @@ public class TournamentResource extends AuditModel {
         return fecha_fin;
     }
 
-    public TournamentResource setFecha_fin(Date fecha_fin) {
+    public SaveTournamentResource setFecha_fin(Date fecha_fin) {
         this.fecha_fin = fecha_fin;
         return this;
     }
@@ -51,8 +49,9 @@ public class TournamentResource extends AuditModel {
         return hora_inicio;
     }
 
-    public TournamentResource setHora_inicio(Date hora_inicio) {
+    public SaveTournamentResource setHora_inicio(Date hora_inicio) {
         this.hora_inicio = hora_inicio;
         return this;
     }
 }
+
