@@ -22,13 +22,13 @@ public class Tournament extends AuditModel {
     private String name;
 
     @NotNull
-    private Date fecha_inicio;
+    private Date startDate;
 
     @NotNull
-    private Date fecha_fin;
+    private Date endDate;
 
     @NotNull
-    private Date hora_inicio;
+    private Date startHour;
 
     @NotNull
     private Long organizer_id;
@@ -57,16 +57,16 @@ public class Tournament extends AuditModel {
         return this;
     }
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public Date getFecha_fin() {
-        return fecha_fin;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public Date getHora_inicio() {
-        return hora_inicio;
+    public Date getStartHour() {
+        return startHour;
     }
 
     public Organizer getOrganizer() {
