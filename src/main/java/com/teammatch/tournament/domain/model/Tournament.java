@@ -29,7 +29,7 @@ public class Tournament extends AuditModel {
 
     @NotNull
     private Date startHour;
-    
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "organizer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -75,4 +75,18 @@ public class Tournament extends AuditModel {
         return this;
     }
 
+    public Tournament setStartDate(Date startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public Tournament setEndDate(Date endDate) {
+        this.endDate = endDate;
+        return this;
+    }
+
+    public Tournament setStartHour(Date startHour) {
+        this.startHour = startHour;
+        return this;
+    }
 }
