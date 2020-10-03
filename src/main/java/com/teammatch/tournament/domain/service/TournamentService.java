@@ -10,7 +10,7 @@ public interface TournamentService {
     Page<Tournament> getAllTournamentsByPostId(Long postId, Pageable pageable);
     Tournament getTournamentById(Long tournamentId);
     Tournament createTournament(Tournament tournament);
-    Tournament updateTournament(Long tagId, Tournament tournamentDetails);
+    Tournament updateTournament(Long tournamentId, Tournament tournamentDetails);
     ResponseEntity<?> deleteTournament(Long tournamentId);
 
 }
