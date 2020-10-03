@@ -27,37 +27,39 @@ public class TournamentController {
     @Autowired
     private TournamentService tournamentService;
 
-    @GetMapping("/tournaments")
-    public Page<TournamentResource> getAllTournaments(Pageable pageable){
-        Page<Tournament> tournamentsPage=tournamentService.getAllTournaments(pageable);
+    @GetMapping("/organizers/{organizerId}/tournaments")
+    public Page<TournamentResource> getAllTournamentsByOrganizerId(@PathVariable(value = "organizerId") Long organizerId, Pageable pageable){
+        Page<Tournament> tournamentsPage=tournamentService.getAllTournamentsByOrganizerId(organizerId, pageable);
         List<TournamentResource> resources = tournamentsPage.getContent()
                 .stream().map(this::convertToResource)
                 .collect(Collectors.toList());
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @GetMapping("/tournaments/{tournamentId}")
-    public TournamentResource getTournamentById(@PathVariable (value = "tournamentId") Long tournamentId){
-        return convertToResource(tournamentService.getTournamentById(tournamentId));
+    @GetMapping("/organizers/{organizerId}/tournaments/{tournamentId}")
+    public TournamentResource getTournamentByIdAndOrganizerId(@PathVariable(value = "organizerId") Long organizerId, @PathVariable (value = "tournamentId") Long tournamentId){
+        return convertToResource(tournamentService.getTournamentByIdAndOrganizerId(organizerId, tournamentId));
     }
 
-    @PostMapping("/tournaments")
-    public TournamentResource createTournament(
+    @PostMapping("/organizers/{organizerId}/tournaments")
+    public TournamentResource createTournament(@PathVariable (value = "organizerId") Long organizerId,
             @Valid @RequestBody SaveTournamentResource resource){
         Tournament tournament = convertToEntity(resource);
-        return convertToResource(tournamentService.createTournament(tournament));
+        return convertToResource(tournamentService.createTournament(organizerId, tournament));
     }
 
-    @PutMapping("/tournaments/{tournamentId}")
-    public TournamentResource updateTournament(@PathVariable (value = "tournamentId") Long tournamentId,
+    @PutMapping("/organizers/{organizerId}/tournaments/{tournamentId}")
+    public TournamentResource updateTournament(@PathVariable (value = "organizerId") Long organizerId,
+                                                @PathVariable (value = "tournamentId") Long tournamentId,
                                                @Valid @RequestBody SaveTournamentResource resource){
         Tournament tournament=convertToEntity(resource);
-        return convertToResource(tournamentService.updateTournament(tournamentId, tournament));
+        return convertToResource(tournamentService.updateTournament(organizerId, tournamentId, tournament));
     }
 
-    @DeleteMapping("/tournaments/{tournamentId}")
-    public ResponseEntity<?> deleteTournament(@PathVariable (value = "tournamentId") Long tournamentId){
-        return tournamentService.deleteTournament(tournamentId);
+    @DeleteMapping("/organizers/{organizerId}/tournaments/{tournamentId}")
+    public ResponseEntity<?> deleteTournament(@PathVariable (value = "organizerId") Long organizerId,
+            @PathVariable (value = "tournamentId") Long tournamentId){
+        return tournamentService.deleteTournament(organizerId, tournamentId);
     }
 
     private Tournament convertToEntity(SaveTournamentResource resource) {
