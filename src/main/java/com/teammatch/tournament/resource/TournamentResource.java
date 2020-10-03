@@ -7,9 +7,9 @@ public class TournamentResource extends AuditModel {
 
     private Long id;
     private String name;
-    private Date fecha_inicio;
-    private Date fecha_fin;
-    private Date hora_inicio;
+    private Date startDate;
+    private Date endDate;
+    private Date startHour;
 
     public Long getId() {
         return id;
@@ -29,30 +29,30 @@ public class TournamentResource extends AuditModel {
         return this;
     }
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public TournamentResource setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
+    public TournamentResource setStartDate(Date startDate) {
+        this.startDate = startDate;
         return this;
     }
 
-    public Date getFecha_fin() {
-        return fecha_fin;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public TournamentResource setFecha_fin(Date fecha_fin) {
-        this.fecha_fin = fecha_fin;
+    public TournamentResource setEndDate(Date endDate) {
+        this.endDate = endDate;
         return this;
     }
 
-    public Date getHora_inicio() {
-        return hora_inicio;
+    public Date getStartHour() {
+        return startHour;
     }
 
-    public TournamentResource setHora_inicio(Date hora_inicio) {
-        this.hora_inicio = hora_inicio;
+    public TournamentResource setStartHour(Date startHour) {
+        this.startHour = startHour;
         return this;
     }
 }
