@@ -47,4 +47,10 @@ public class OrganizerServiceImpl implements OrganizerService {
         organizerRepository.delete(organizer);
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public Organizer getOrganizerByUserName(String userName) {
+        return organizerRepository.findByUsername(userName)
+                .orElseThrow(()->new ResourceNotFoundException("Organizer","userName",userName));
+    }
 }
