@@ -29,10 +29,7 @@ public class Tournament extends AuditModel {
 
     @NotNull
     private Date startHour;
-
-    @NotNull
-    private Long organizer_id;
-
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "organizer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
