@@ -11,4 +11,5 @@ public interface OrganizerService {
     Organizer createOrganizer(Organizer organizer);
     Organizer updateOrganizer(Long organizerId, Organizer organizerRequest);
     ResponseEntity<?> deleteOrganizer(Long organizerId);
+    Organizer getOrganizerByUserName(String userName);
 }
