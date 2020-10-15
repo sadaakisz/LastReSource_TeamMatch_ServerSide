@@ -4,6 +4,7 @@ import com.teammatch.tournament.domain.model.Organizer;
 import com.teammatch.tournament.domain.service.OrganizerService;
 import com.teammatch.tournament.resource.OrganizerResource;
 import com.teammatch.tournament.resource.SaveOrganizerResource;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Tag(name = "Organizer", description = "Organizer API")
 @RestController
 @RequestMapping("/api")
 public class OrganizerController {
