@@ -1,30 +1,32 @@
-package com.teammatch.tournament.domain.model;
+package com.teammatch.tournament.resource;
 
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Lob;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity
-@Table(name = "profiles")
-public class Profile extends AuditModel{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class SaveProfileResource {
 
     @NotNull
+    @NotBlank
     private String firstName;
 
     @NotNull
+    @NotBlank
     private String lastName;
 
     @NotNull
-    @NaturalId
+    @NotBlank
+    @Size(max = 100)
     @Column(unique = true)
     private String username;
 
+    @NotNull
+    @NotBlank
     @Lob
     private String description;
 
@@ -32,6 +34,7 @@ public class Profile extends AuditModel{
     private String gender;
 
     @NotNull
+    @NotBlank
     @Size(max = 100)
     private String emailAddress;
 
@@ -41,20 +44,11 @@ public class Profile extends AuditModel{
     @NotNull
     private Date birthDate;
 
-    public Long getId() {
-        return id;
-    }
-
-    public Profile setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
     public String getFirstName() {
         return firstName;
     }
 
-    public Profile setFirstName(String firstName) {
+    public SaveProfileResource setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -63,7 +57,7 @@ public class Profile extends AuditModel{
         return lastName;
     }
 
-    public Profile setLastName(String lastName) {
+    public SaveProfileResource setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -72,7 +66,7 @@ public class Profile extends AuditModel{
         return username;
     }
 
-    public Profile setUsername(String username) {
+    public SaveProfileResource setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -81,7 +75,7 @@ public class Profile extends AuditModel{
         return description;
     }
 
-    public Profile setDescription(String description) {
+    public SaveProfileResource setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -90,7 +84,7 @@ public class Profile extends AuditModel{
         return gender;
     }
 
-    public Profile setGender(String gender) {
+    public SaveProfileResource setGender(String gender) {
         this.gender = gender;
         return this;
     }
@@ -99,7 +93,7 @@ public class Profile extends AuditModel{
         return emailAddress;
     }
 
-    public Profile setEmailAddress(String emailAddress) {
+    public SaveProfileResource setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
         return this;
     }
@@ -108,7 +102,7 @@ public class Profile extends AuditModel{
         return phoneNumber;
     }
 
-    public Profile setPhoneNumber(String phoneNumber) {
+    public SaveProfileResource setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
@@ -117,7 +111,7 @@ public class Profile extends AuditModel{
         return birthDate;
     }
 
-    public Profile setBirthDate(Date birthDate) {
+    public SaveProfileResource setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
         return this;
     }
