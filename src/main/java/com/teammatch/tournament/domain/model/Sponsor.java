@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Entity
+@Table(name = "sponsors")
 public class Sponsor extends AuditModel {
 
     @Id

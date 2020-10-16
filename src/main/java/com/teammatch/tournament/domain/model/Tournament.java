@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tournaments")
@@ -34,7 +35,15 @@ public class Tournament extends AuditModel {
     @JoinColumn(name = "organizer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
+
     private Organizer organizer;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "tournaments")
+    @JsonIgnore
+    private List<Sponsor> sponsors;
+
 
     public Long getId() {
         return id;
@@ -87,6 +96,15 @@ public class Tournament extends AuditModel {
 
     public Tournament setStartHour(Date startHour) {
         this.startHour = startHour;
+        return this;
+    }
+
+    public List<Sponsor> getSponsors() {
+        return sponsors;
+    }
+
+    public Tournament setSponsors(List<Sponsor> sponsors) {
+        this.sponsors = sponsors;
         return this;
     }
 }
