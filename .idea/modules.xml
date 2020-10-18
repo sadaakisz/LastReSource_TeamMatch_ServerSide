@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/backendTeam.iml" filepath="$PROJECT_DIR$/.idea/backendTeam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LastReSource_TeamMatch_ServerSide/tournament.iml" filepath="$PROJECT_DIR$/LastReSource_TeamMatch_ServerSide/tournament.iml" />
+    </modules>
+  </component>
+</project>
