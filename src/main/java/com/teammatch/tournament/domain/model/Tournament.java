@@ -8,9 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.List;
-
-@Entity
-@Table(name = "tournaments")
+@MappedSuperclass
 public class Tournament extends AuditModel {
 
 
@@ -21,15 +19,35 @@ public class Tournament extends AuditModel {
     @NotNull
     @Column(unique = true)
     private String name;
-
     @NotNull
-    private Date startDate;
-
+    @Lob
+    private String description;
     @NotNull
-    private Date endDate;
+    private String prize;
 
+    private Boolean publicTournament;
     @NotNull
-    private Date startHour;
+    private String code;
+
+    private Date dateOfTournament;
+    @NotNull
+    private Integer maxTeams;
+
+
+
+
+
+
+
+
+
+   // private Date startDate;
+
+
+   // private Date endDate;
+
+
+    //private Date startHour;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "organizer_id", nullable = false)
@@ -38,11 +56,7 @@ public class Tournament extends AuditModel {
 
     private Organizer organizer;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "tournaments")
-    @JsonIgnore
-    private List<Sponsor> sponsors;
+
 
 
     public Long getId() {
@@ -63,17 +77,6 @@ public class Tournament extends AuditModel {
         return this;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public Date getStartHour() {
-        return startHour;
-    }
 
     public Organizer getOrganizer() {
         return organizer;
@@ -84,27 +87,61 @@ public class Tournament extends AuditModel {
         return this;
     }
 
-    public Tournament setStartDate(Date startDate) {
-        this.startDate = startDate;
+
+
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Tournament setDescription(String description) {
+        this.description = description;
         return this;
     }
 
-    public Tournament setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public String getPrize() {
+        return prize;
+    }
+
+    public Tournament setPrize(String prize) {
+        this.prize = prize;
         return this;
     }
 
-    public Tournament setStartHour(Date startHour) {
-        this.startHour = startHour;
+    public Boolean getPublicTournament() {
+        return publicTournament;
+    }
+
+    public Tournament setPublicTournament(Boolean publicTournament) {
+        this.publicTournament = publicTournament;
         return this;
     }
 
-    public List<Sponsor> getSponsors() {
-        return sponsors;
+    public String getCode() {
+        return code;
     }
 
-    public Tournament setSponsors(List<Sponsor> sponsors) {
-        this.sponsors = sponsors;
+    public Tournament setCode(String code) {
+        this.code = code;
+        return this;
+    }
+
+    public Date getDateOfTournament() {
+        return dateOfTournament;
+    }
+
+    public Tournament setDateOfTournament(Date dateOfTournament) {
+        this.dateOfTournament = dateOfTournament;
+        return this;
+    }
+
+    public Integer getMaxTeams() {
+        return maxTeams;
+    }
+
+    public Tournament setMaxTeams(Integer maxTeams) {
+        this.maxTeams = maxTeams;
         return this;
     }
 }
