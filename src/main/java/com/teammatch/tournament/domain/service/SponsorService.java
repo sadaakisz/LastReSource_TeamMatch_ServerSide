@@ -12,8 +12,8 @@ public interface SponsorService {
     Sponsor createSponsor(Sponsor sponsor);
     Sponsor updateSponsor(Long sponsorId, Sponsor sponsorRequest);
     ResponseEntity<?> deleteSponsor(Long sponsorId);
-    Sponsor assignSponsorTournament(Long sponsorId, Long tournamentId);
-    Sponsor unassignSponsorTournament(Long sponsorId, Long tournamentId);
-    Page<Sponsor> getAllSponsorsByTournamentId(Long tournamentId, Pageable pageable);
+    Sponsor assignSponsorProfessionalTournament(Long sponsorId, Long professionalTournamentId);
+    Sponsor unassignSponsorProfessionalTournament(Long sponsorId, Long professionalTournamentId);
+    Page<Sponsor> getAllSponsorsByProfessionalTournamentId(Long professionalTournamentId, Pageable pageable);
     Sponsor getSponsorByName(String name);
 }

@@ -1,9 +1,11 @@
 package com.teammatch.tournament.service;
 
+import com.teammatch.tournament.domain.model.FreeTournament;
+import com.teammatch.tournament.domain.model.ProfessionalTournament;
 import com.teammatch.tournament.domain.model.Sponsor;
-import com.teammatch.tournament.domain.model.Tournament;
+import com.teammatch.tournament.domain.repository.ProfessionalTournamentRepository;
 import com.teammatch.tournament.domain.repository.SponsorRepository;
-import com.teammatch.tournament.domain.repository.TournamentRepository;
+import com.teammatch.tournament.domain.repository.FreeTournamentRepository;
 import com.teammatch.tournament.domain.service.SponsorService;
 import com.teammatch.tournament.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class SponsorServiceImpl implements SponsorService {
     private SponsorRepository sponsorRepository;
 
     @Autowired
-    private TournamentRepository tournamentRepository;
+    private ProfessionalTournamentRepository professionalTournamentRepository;
 
     @Override
     public Page<Sponsor> getAllSponsors(Pageable pageable) {
@@ -62,36 +64,36 @@ public class SponsorServiceImpl implements SponsorService {
     }
 
     @Override
-    public Sponsor assignSponsorTournament(Long sponsorId, Long tournamentId) {
-        Tournament tournament = tournamentRepository.findById(tournamentId)
+    public Sponsor assignSponsorProfessionalTournament(Long sponsorId, Long professionalTournamentId) {
+        ProfessionalTournament professionalTournament = professionalTournamentRepository.findById(professionalTournamentId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Tournament", "Id", tournamentId));
+                        "Tournament", "Id", professionalTournamentId));
         return sponsorRepository.findById(sponsorId).map(sponsor -> {
-            return sponsorRepository.save(sponsor.tournamentWith(tournament));
+            return sponsorRepository.save(sponsor.professionalTournamentWith(professionalTournament));
         }).orElseThrow(() -> new ResourceNotFoundException(
                 "Sponsor", "Id", sponsorId));
 
     }
 
     @Override
-    public Sponsor unassignSponsorTournament(Long sponsorId, Long tournamentId) {
-        Tournament tournament = tournamentRepository.findById(tournamentId)
+    public Sponsor unassignSponsorProfessionalTournament(Long sponsorId, Long professionalTournamentId) {
+       ProfessionalTournament professionalTournament = professionalTournamentRepository.findById(professionalTournamentId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Tournament", "Id", tournamentId));
+                        "Tournament", "Id", professionalTournamentId));
         return sponsorRepository.findById(sponsorId).map(sponsor -> {
-            return sponsorRepository.save(sponsor.unTournamentWith(tournament));
+            return sponsorRepository.save(sponsor.unProfessionalTournamentWith(professionalTournament));
         }).orElseThrow(() -> new ResourceNotFoundException(
                 "Sponsor", "Id", sponsorId));
     }
 
     @Override
-    public Page<Sponsor> getAllSponsorsByTournamentId(Long tournamentId, Pageable pageable) {
-        return tournamentRepository.findById(tournamentId).map( tournament -> {
-            List<Sponsor> sponsors = tournament.getSponsors();
+    public Page<Sponsor> getAllSponsorsByProfessionalTournamentId(Long professionalTournamentId, Pageable pageable) {
+        return professionalTournamentRepository.findById(professionalTournamentId).map(professionalTournament -> {
+            List<Sponsor> sponsors = professionalTournament.getSponsors();
             int sponsorsCount = sponsors.size();
             return new PageImpl<>(sponsors, pageable, sponsorsCount);
         }).orElseThrow(() -> new ResourceNotFoundException(
-                "Tournament", "Id", tournamentId));
+                "Tournament", "Id", professionalTournamentId));
     }
 
     @Override
