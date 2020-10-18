@@ -61,11 +61,11 @@ public class SponsorController {
         return sponsorService.deleteSponsor(sponsorId);
     }
 
-    @GetMapping("/tournaments/{tournamentId}/sponsors")
+    @GetMapping("/professional-tournaments/{professionalTournamentId}/sponsors")
     public Page<SponsorResource> getAllSponsorsByTagId(
-            @PathVariable(name = "tournamentId") Long tournamentId,
+            @PathVariable(name = "professionalTournamentId") Long professionalTournamentId,
             Pageable pageable) {
-        Page<Sponsor> sponsorsPage = sponsorService.getAllSponsorsByTournamentId(tournamentId, pageable);
+        Page<Sponsor> sponsorsPage = sponsorService.getAllSponsorsByProfessionalTournamentId(professionalTournamentId, pageable);
         List<SponsorResource> resources = sponsorsPage.getContent()
                 .stream().map(this::convertToResource)
                 .collect(Collectors.toList());
@@ -73,18 +73,18 @@ public class SponsorController {
 
     }
 
-    @PostMapping("/sponsors/{sponsorId}/tournaments/{tournamentId}")
-    public SponsorResource assignSponsorTournament(
+    @PostMapping("/sponsors/{sponsorId}/professional-tournaments/{professionalTournamentId}")
+    public SponsorResource assignSponsorProfessionalTournament(
             @PathVariable(name = "sponsorId") Long sponsorId,
-            @PathVariable(name = "tournamentId") Long tournamentId) {
-        return convertToResource(sponsorService.assignSponsorTournament(sponsorId, tournamentId));
+            @PathVariable(name = "professionalTournamentId") Long professionalTournamentId) {
+        return convertToResource(sponsorService.assignSponsorProfessionalTournament(sponsorId, professionalTournamentId));
     }
 
-    @DeleteMapping("/sponsors/{sponsorId}/tournaments/{tournamentId}")
-    public SponsorResource unassignSponsorTournament(
+    @DeleteMapping("/sponsors/{sponsorId}/professional-tournaments/{professionalTournamentId}")
+    public SponsorResource unassignSponsorProfessionalTournament(
             @PathVariable(name = "sponsorId") Long sponsorId,
-            @PathVariable(name = "tournamentId") Long tournamentId) {
-        return convertToResource(sponsorService.unassignSponsorTournament(sponsorId, tournamentId));
+            @PathVariable(name = "professionalTournamentId") Long professionalTournamentId) {
+        return convertToResource(sponsorService.unassignSponsorProfessionalTournament(sponsorId, professionalTournamentId));
     }
 
     private Sponsor convertToEntity(SaveSponsorResource resource) {

@@ -23,26 +23,26 @@ public class Sponsor extends AuditModel {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = { CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "sponsor_tournaments",
+    @JoinTable(name = "sponsor_professional_tournaments",
             joinColumns = {@JoinColumn(name = "sponsor_id")},
-            inverseJoinColumns = {@JoinColumn(name = "tournament_id")})
+            inverseJoinColumns = {@JoinColumn(name = "professional_tournament_id")})
     @JsonIgnore
-    private List<Tournament> tournaments;
+    private List<ProfessionalTournament> professionalTournaments;
 
-    public boolean hasTournamentWith(Tournament tournament) {
-        return (this.getTournaments().contains(tournament));
+    public boolean hasProfessionalTournamentWith(ProfessionalTournament  professionalTournament) {
+        return (this.getProfessionalTournaments().contains(professionalTournament));
     }
 
-    public Sponsor tournamentWith(Tournament tournament) {
-        if(!this.hasTournamentWith(tournament)) {
-            this.getTournaments().add(tournament);
+    public Sponsor professionalTournamentWith(ProfessionalTournament professionalTournament) {
+        if(!this.hasProfessionalTournamentWith(professionalTournament)) {
+            this.getProfessionalTournaments().add(professionalTournament);
         }
         return this;
     }
 
-    public Sponsor unTournamentWith(Tournament tournament) {
-        if(this.hasTournamentWith(tournament)) {
-            this.getTournaments().remove(tournament);
+    public Sponsor unProfessionalTournamentWith(ProfessionalTournament professionalTournament) {
+        if(this.hasProfessionalTournamentWith(professionalTournament)) {
+            this.getProfessionalTournaments().remove(professionalTournament);
         }
         return this;
     }
@@ -75,12 +75,12 @@ public class Sponsor extends AuditModel {
     }
 
 
-    public List<Tournament> getTournaments() {
-        return tournaments;
+    public List<ProfessionalTournament> getProfessionalTournaments() {
+        return professionalTournaments;
     }
 
-    public Sponsor setTournaments(List<Tournament> tournaments) {
-        this.tournaments = tournaments;
+    public Sponsor setProfessionalTournaments(List<ProfessionalTournament> professionalTournaments) {
+        this.professionalTournaments = professionalTournaments;
         return this;
     }
 
