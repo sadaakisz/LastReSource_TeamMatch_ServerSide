@@ -1,7 +1,6 @@
 package com.teammatch.tournament.service;
 
 import com.teammatch.tournament.domain.model.Player;
-import com.teammatch.tournament.domain.model.Sponsor;
 import com.teammatch.tournament.domain.repository.GameRepository;
 import com.teammatch.tournament.domain.repository.PlayerRepository;
 import com.teammatch.tournament.domain.service.PlayerService;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
+
     @Autowired
     private PlayerRepository playerRepository;
 
@@ -32,14 +32,34 @@ public class PlayerServiceImpl implements PlayerService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Player", "Id", playerId));
     }
-   /* @Override
-    public Player createPlayer(Long playerId, Player player){
-        return playerRepository.findById(playerId).map(player->{
 
-        })
-    }*/
+    @Override
+    public Player createPlayer(Player player) { return playerRepository.save(player); }
 
-    /*Player updatePlayer(Long playerId, Player playerRequest);
-    ResponseEntity<?> deletePlayer(Long playerId);
-    Player getPlayerByLevel(Integer level);*/
+    @Override
+    public Player updatePlayer(Long playerId, Player playerRequest) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Player", "Id", playerId));
+        return playerRepository.save(
+                player.setLevel(playerRequest.getLevel())
+                        .setHoursPlayed(playerRequest.getHoursPlayed())
+        .setKillDeathRatio(playerRequest.getKillDeathRatio()));
+    }
+
+    @Override
+    public ResponseEntity<?> deletePlayer(Long playerId) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Player", "Id", playerId));
+        playerRepository.delete(player);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @Override
+    public Player getPlayerByLevel(Integer level) {
+        return playerRepository.findByLevel(level)
+                .orElseThrow(()->new ResourceNotFoundException("Player","Level",level));
+    }
 }

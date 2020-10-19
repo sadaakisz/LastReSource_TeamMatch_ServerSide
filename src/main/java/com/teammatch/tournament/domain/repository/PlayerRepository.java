@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Long>{
-    public Optional<Player>  findByLevel(String level);
+    public Optional<Player>  findByLevel(Integer level);
 }

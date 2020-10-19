@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface PlayerService {
-    Page<Player> getAllOPlayers(Pageable pageable);
+    Page<Player> getAllPlayers(Pageable pageable);
     Player getPlayerById(Long playerId);
     Player createPlayer(Player player);
     Player updatePlayer(Long playerId, Player playerRequest);
