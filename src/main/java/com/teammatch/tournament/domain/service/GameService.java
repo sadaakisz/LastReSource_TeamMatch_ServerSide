@@ -13,8 +13,9 @@ public interface GameService {
     Game createGame(Game game);
     Game updateGame(Long gameId, Game gameRequest);
     ResponseEntity<?> deleteGame(Long gameId);
-    Game assignGamePlayer(Long gameId, Long playerId);
+    Game getGameByName(String name);
+    /*Game assignGamePlayer(Long gameId, Long playerId);
     Game unassignGamePlayer(Long gameId, Long playerId);
     Page<Game> getAllGamesByPlayerId(Long playerId, Pageable pageable);
-    Game getPlayerByPlatform(String platform);
+    Game getPlayerByPlatform(String platform);*/
 }
