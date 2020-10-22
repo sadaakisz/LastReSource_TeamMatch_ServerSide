@@ -65,10 +65,29 @@ public class PlayerController {
         return playerService.deletePlayer(playerId);
     }
 
-    private Player convertToEntity(SavePlayerResource resource) {
-
-        return mapper.map(resource, Player.class);
+    @GetMapping("/chats/{chatId}/players")
+    public Page<PlayerResource> getAllPlayersByChatId(@PathVariable(name = "chatId") Long chatId, Pageable pageable){
+        Page<Player> playerPage = playerService.getAllPlayersByChatId(chatId, pageable);
+        List<PlayerResource> resources = playerPage.getContent().stream()
+                .map(this::convertToResource).collect(Collectors.toList());
+        return new PageImpl<>(resources, pageable, resources.size());
     }
+
+    @PostMapping("/players/{playerId}/chats/{chatId}")
+    public PlayerResource addPlayerToChat(@PathVariable(name = "playerId") Long playerId,
+                                      @PathVariable(name = "chatId") Long chatId){
+        return  convertToResource(playerService.addPlayerToChat(playerId, chatId));
+    }
+
+    @DeleteMapping("/players/{playerId}/chats/{chatId}")
+    public PlayerResource deletePlayerFromChat(@PathVariable(name = "playerId") Long playerId,
+                                        @PathVariable(name = "chatId") Long chatId){
+        return  convertToResource(playerService.deletePlayerFromChat(playerId, chatId));
+    }
+
+
+
+    private Player convertToEntity(SavePlayerResource resource) { return mapper.map(resource, Player.class);  }
 
     private PlayerResource convertToResource(Player entity) {
         return mapper.map(entity, PlayerResource.class);

@@ -30,6 +30,28 @@ public class Player extends AuditModel{
     @JsonIgnore
     private List<Game> games;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "player_chats", joinColumns = {@JoinColumn(name = "player_id")}, inverseJoinColumns = {@JoinColumn(name="chat_id")})
+    @JsonIgnore
+    private List<Chat> chats;
+
+    public boolean isInChat(Chat chat){       // Business methods
+        return (this.getChats().contains(chat));
+    }
+
+    public Player addToChat(Chat chat) {
+        if(!this.isInChat(chat)) {
+            this.getChats().add(chat);
+        }
+        return this;
+    }
+
+    public Player deleteFromChat(Chat chat) {
+        if(this.isInChat(chat)) {
+            this.getChats().remove(chat);
+        }
+        return this;
+    }
 
     public Long getId() {
         return id;
@@ -68,4 +90,21 @@ public class Player extends AuditModel{
     }
 
 
+    public List<Chat> getChats() {
+        return chats;
+    }
+
+    public Player setChats(List<Chat> chats) {
+        this.chats = chats;
+        return this;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public Player setGames(List<Game> games) {
+        this.games = games;
+        return this;
+    }
 }

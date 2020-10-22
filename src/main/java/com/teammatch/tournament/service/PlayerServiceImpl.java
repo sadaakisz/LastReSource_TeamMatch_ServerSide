@@ -1,15 +1,20 @@
 package com.teammatch.tournament.service;
 
+import com.teammatch.tournament.domain.model.Chat;
 import com.teammatch.tournament.domain.model.Player;
+import com.teammatch.tournament.domain.repository.ChatRepository;
 import com.teammatch.tournament.domain.repository.GameRepository;
 import com.teammatch.tournament.domain.repository.PlayerRepository;
 import com.teammatch.tournament.domain.service.PlayerService;
 import com.teammatch.tournament.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -20,6 +25,8 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Autowired
     private GameRepository gameRepository;
+    @Autowired
+    private ChatRepository chatRepository;
 
     @Override
     public Page<Player> getAllPlayers(Pageable pageable) {
@@ -61,5 +68,33 @@ public class PlayerServiceImpl implements PlayerService {
     public Player getPlayerByLevel(Integer level) {
         return playerRepository.findByLevel(level)
                 .orElseThrow(()->new ResourceNotFoundException("Player","Level",level));
+    }
+
+    @Override
+    public Player addPlayerToChat(Long playerId, Long chatId) {
+        Chat chat = chatRepository.findById(chatId).orElseThrow(()-> new ResourceNotFoundException("Chat", "Id", chatId));
+        return playerRepository.findById(playerId).map(player -> {
+            return playerRepository.save(player.addToChat(chat));
+        }).orElseThrow(() -> new ResourceNotFoundException(
+                "Player", "Id", playerId));
+    }
+
+    @Override
+    public Player deletePlayerFromChat(Long playerId, Long chatId) {
+        Chat chat = chatRepository.findById(chatId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Chat", "Id", chatId));
+        return playerRepository.findById(playerId).map(player -> {
+            return playerRepository.save(player.deleteFromChat(chat));
+        }).orElseThrow(() -> new ResourceNotFoundException(
+                "Player", "Id", playerId));
+    }
+
+    @Override
+    public Page<Player> getAllPlayersByChatId(Long chatId, Pageable pageable) {
+        return chatRepository.findById(chatId).map( chat -> {
+            List<Player> players = chat.getParticipants();
+            return new PageImpl<>(players, pageable, players.size());
+        }).orElseThrow(() -> new ResourceNotFoundException( "Chat", "Id", chatId));
     }
 }
