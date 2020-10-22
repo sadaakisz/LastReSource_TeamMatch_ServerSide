@@ -1,5 +1,6 @@
 package com.teammatch.tournament.domain.service;
 
+import com.teammatch.tournament.domain.model.Chat;
 import com.teammatch.tournament.domain.model.Player;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,4 +13,7 @@ public interface PlayerService {
     Player updatePlayer(Long playerId, Player playerRequest);
     ResponseEntity<?> deletePlayer(Long playerId);
     Player getPlayerByLevel(Integer level);
+    Player addPlayerToChat(Long playerId, Long chatId);
+    Player deletePlayerFromChat(Long playerId, Long chatId);
+    Page<Player> getAllPlayersByChatId(Long chatId, Pageable pageable);
 }
