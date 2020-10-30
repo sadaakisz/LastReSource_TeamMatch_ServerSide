@@ -14,4 +14,7 @@ public interface ProfessionalTournamentService {
     ProfessionalTournament createProfessionalTournament(Long organizerId, ProfessionalTournament professionalTournament);
     ProfessionalTournament updateProfessionalTournament(Long organizerId, Long professionalTournamentId, ProfessionalTournament professionalTournamentDetails);
     ResponseEntity<?> deleteProfessionalTournament(Long organizerId, Long professionalTournamentId);
+    ProfessionalTournament assignProfessionalTournamentPlayer(Long professionalTournamentId, Long playerId);
+    ProfessionalTournament unassignProfessionalTournamentPlayer(Long professionalTournamentId, Long playerId);
+    Page<ProfessionalTournament> getAllProfessionalTournamentByPlayerId(Long playerId, Pageable pageable);
 }

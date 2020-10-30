@@ -1,17 +1,22 @@
 package com.teammatch.tournament.service;
 
+import com.teammatch.tournament.domain.model.Chat;
 import com.teammatch.tournament.domain.model.FreeTournament;
+import com.teammatch.tournament.domain.model.Player;
 import com.teammatch.tournament.domain.model.Tournament;
 import com.teammatch.tournament.domain.repository.OrganizerRepository;
 import com.teammatch.tournament.domain.repository.FreeTournamentRepository;
+import com.teammatch.tournament.domain.repository.PlayerRepository;
 import com.teammatch.tournament.domain.service.FreeTournamentService;
 import com.teammatch.tournament.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
@@ -21,7 +26,8 @@ public class FreeTournamentServiceImpl implements FreeTournamentService {
 
     @Autowired
     private OrganizerRepository organizerRepository;
-
+    @Autowired
+    private PlayerRepository playerRepository;
     @Override
     public Page<FreeTournament> getAllFreeTournaments(Pageable pageable) {
         return freeTournamentRepository.findAll(pageable);
@@ -63,6 +69,11 @@ public class FreeTournamentServiceImpl implements FreeTournamentService {
             throw new ResourceNotFoundException("Organizer", "Id", organizerId);
         return freeTournamentRepository.findById(freeTournamentId).map(freeTournament -> {
             freeTournament.setName(freeTournamentDetails.getName());
+            freeTournament.setDescription(freeTournamentDetails.getDescription());
+            freeTournament.setPrize(freeTournamentDetails.getPrize());
+            freeTournament.setPublicTournament(freeTournamentDetails.getPublicTournament());
+            freeTournament.setCode(freeTournamentDetails.getCode());
+            freeTournament.setMaxTeams(freeTournamentDetails.getMaxTeams());
 
             return freeTournamentRepository.save(freeTournament);
         }).orElseThrow(() -> new ResourceNotFoundException("Tournament", "Id", freeTournamentId));
@@ -76,4 +87,31 @@ public class FreeTournamentServiceImpl implements FreeTournamentService {
         }).orElseThrow(()->new ResourceNotFoundException(
                 "Tournament not found with Id " + freeTournamentId + " and OrganizerId " + organizerId));
     }
+
+    @Override
+    public FreeTournament assignFreeTournamentPlayer(Long freeTournamentId, Long playerId) {
+        Player player = playerRepository.findById(playerId).orElseThrow(()-> new ResourceNotFoundException("Player", "Id", playerId));
+        return freeTournamentRepository.findById(freeTournamentId).map(freeTournament -> {
+            return freeTournamentRepository.save(freeTournament.addToPlayer(player));
+        }).orElseThrow(() -> new ResourceNotFoundException(
+                "FreeTournament", "Id", freeTournamentId));
+    }
+
+    @Override
+    public FreeTournament unassignFreeTournamentPlayer(Long freeTournamentId, Long playerId) {
+        Player player = playerRepository.findById(playerId).orElseThrow(()-> new ResourceNotFoundException("Player", "Id", playerId));
+        return freeTournamentRepository.findById(freeTournamentId).map(freeTournament -> {
+            return freeTournamentRepository.save(freeTournament.deleteFromPlayer(player));
+        }).orElseThrow(() -> new ResourceNotFoundException(
+                "FreeTournament", "Id", freeTournamentId));
+    }
+        @Override
+        public Page<FreeTournament> getAllFreeTournamentsByPlayerId (Long playerId, Pageable pageable){
+            return playerRepository.findById(playerId).map(player -> {
+                List<FreeTournament> freeTournaments = player.getFreeTournaments();
+                return new PageImpl<>(freeTournaments, pageable, freeTournaments.size());
+            }).orElseThrow(() -> new ResourceNotFoundException("Player", "Id", playerId));
+
+    }
 }
+

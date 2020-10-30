@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.List;
 @MappedSuperclass
+
 public class Tournament extends AuditModel {
 
 
@@ -52,7 +53,7 @@ public class Tournament extends AuditModel {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "organizer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+
 
     private Organizer organizer;
 

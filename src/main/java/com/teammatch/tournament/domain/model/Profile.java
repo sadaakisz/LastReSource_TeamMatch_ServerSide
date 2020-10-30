@@ -7,8 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity
-@Table(name = "profiles")
+@MappedSuperclass
 public class Profile extends AuditModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +19,7 @@ public class Profile extends AuditModel{
     @NotNull
     private String lastName;
 
-    @NotNull
-    @NaturalId
-    @Column(unique = true)
-    private String username;
+
 
     @Lob
     private String description;
@@ -38,7 +34,7 @@ public class Profile extends AuditModel{
     @NotNull
     private String phoneNumber;
 
-    @NotNull
+
     private Date birthDate;
 
     public Long getId() {
@@ -68,14 +64,7 @@ public class Profile extends AuditModel{
         return this;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public Profile setUsername(String username) {
-        this.username = username;
-        return this;
-    }
 
     public String getDescription() {
         return description;

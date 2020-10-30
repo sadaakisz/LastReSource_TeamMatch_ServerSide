@@ -5,12 +5,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "organizers")
-public class Organizer extends AuditModel {
+public class Organizer extends Profile {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
 
     @NotNull
     @Column(unique = true)
@@ -20,14 +18,6 @@ public class Organizer extends AuditModel {
     private String password;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public Organizer setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getUsername() {
         return username;
@@ -38,6 +28,7 @@ public class Organizer extends AuditModel {
         return this;
     }
 
+
     public String getPassword() {
         return password;
     }
@@ -46,5 +37,4 @@ public class Organizer extends AuditModel {
         this.password = password;
         return this;
     }
-
 }

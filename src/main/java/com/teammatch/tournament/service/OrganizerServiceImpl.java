@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.MappedSuperclass;
+
 @Service
 public class OrganizerServiceImpl implements OrganizerService {
 
@@ -31,12 +33,19 @@ public class OrganizerServiceImpl implements OrganizerService {
 
     @Override
     public Organizer updateOrganizer(Long organizerId, Organizer organizerRequest) {
-        Organizer organizer = organizerRepository.findById(organizerId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Organizer", "Id", organizerId));
-        return organizerRepository.save(
-                organizer.setUsername(organizerRequest.getUsername())
-                    .setPassword(organizerRequest.getPassword()));
+
+        return organizerRepository.findById(organizerId).map(organizer1 -> {
+            organizer1.setUsername(organizerRequest.getUsername());
+            organizer1.setPassword(organizerRequest.getPassword());
+            organizer1.setFirstName(organizerRequest.getFirstName());
+            organizer1.setLastName(organizerRequest.getLastName());
+            organizer1.setDescription(organizerRequest.getDescription());
+            organizer1.setGender(organizerRequest.getGender());
+            organizer1.setEmailAddress(organizerRequest.getEmailAddress());
+            organizer1.setPhoneNumber(organizerRequest.getPhoneNumber());
+            organizer1.setBirthDate(organizerRequest.getBirthDate());
+            return organizerRepository.save(organizer1);
+        }).orElseThrow(()->new ResourceNotFoundException("Organizer","Id",organizerId));
     }
 
     @Override
