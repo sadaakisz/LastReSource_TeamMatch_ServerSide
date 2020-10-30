@@ -1,6 +1,7 @@
 package com.teammatch.tournament.domain.service;
 
 import com.teammatch.tournament.domain.model.FreeTournament;
+import com.teammatch.tournament.domain.model.Team;
 import com.teammatch.tournament.domain.model.Tournament;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,5 +15,7 @@ public interface FreeTournamentService {
     FreeTournament createFreeTournament(Long organizerId, FreeTournament freeTournament);
     FreeTournament updateFreeTournament(Long organizerId, Long tournamentId, FreeTournament freeTournamentDetails);
     ResponseEntity<?> deleteFreeTournament(Long organizerId, Long freeTournamentId);
-
+    FreeTournament assignFreeTournamentPlayer(Long freeTournamentId, Long playerId);
+    FreeTournament unassignFreeTournamentPlayer(Long freeTournamentId, Long playerId);
+    Page<FreeTournament> getAllFreeTournamentsByPlayerId(Long playerId, Pageable pageable);
 }

@@ -9,12 +9,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "players")
-public class Player extends AuditModel{
+public class Player extends Profile{
+    @NotNull
+    @Column(unique = true)
+    private String username;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotNull
+    private String password;
     @NotNull
     private Integer level;
 
@@ -39,6 +40,27 @@ public class Player extends AuditModel{
     @JoinTable(name = "player_teams", joinColumns = {@JoinColumn(name = "player_id")}, inverseJoinColumns = {@JoinColumn(name="team_id")})
     @JsonIgnore
     private List<Team> teams;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "players")
+    @JsonIgnore
+    private List<FreeTournament> freeTournaments;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "players")
+    @JsonIgnore
+    private List<ProfessionalTournament> ProfessionalTournaments;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "players")
+    @JsonIgnore
+    private List<TournamentMoreEnrollment> tournamentMoreEnrollments;
+
 
     public boolean isInChat(Chat chat){       // Business methods
         return (this.getChats().contains(chat));
@@ -76,12 +98,81 @@ public class Player extends AuditModel{
         return this;
     }
 
-    public Long getId() {
-        return id;
+
+
+
+
+    public List<Chat> getChats() {
+        return chats;
     }
 
-    public Player setId(Long id) {
-        this.id = id;
+    public Player setChats(List<Chat> chats) {
+        this.chats = chats;
+        return this;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public Player setGames(List<Game> games) {
+        this.games = games;
+        return this;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public Player setTeams(List<Team> teams) {
+        this.teams = teams;
+        return this;
+    }
+
+    public List<FreeTournament> getFreeTournaments() {
+        return freeTournaments;
+    }
+
+    public Player setFreeTournaments(List<FreeTournament> freeTournaments) {
+        this.freeTournaments = freeTournaments;
+        return this;
+    }
+
+    public List<ProfessionalTournament> getProfessionalTournaments() {
+        return ProfessionalTournaments;
+    }
+
+    public Player setProfessionalTournaments(List<ProfessionalTournament> professionalTournaments) {
+        ProfessionalTournaments = professionalTournaments;
+        return this;
+    }
+
+    public List<TournamentMoreEnrollment> getTournamentMoreEnrollments() {
+        return tournamentMoreEnrollments;
+    }
+
+    public Player setTournamentMoreEnrollments(List<TournamentMoreEnrollment> tournamentMoreEnrollments) {
+        this.tournamentMoreEnrollments = tournamentMoreEnrollments;
+        return this;
+    }
+
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Player setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public Player setUsername(String username) {
+        this.username = username;
         return this;
     }
 
@@ -109,34 +200,6 @@ public class Player extends AuditModel{
 
     public Player setKillDeathRatio(Float killDeathRatio) {
         this.killDeathRatio = killDeathRatio;
-        return this;
-    }
-
-
-    public List<Chat> getChats() {
-        return chats;
-    }
-
-    public Player setChats(List<Chat> chats) {
-        this.chats = chats;
-        return this;
-    }
-
-    public List<Game> getGames() {
-        return games;
-    }
-
-    public Player setGames(List<Game> games) {
-        this.games = games;
-        return this;
-    }
-
-    public List<Team> getTeams() {
-        return teams;
-    }
-
-    public Player setTeams(List<Team> teams) {
-        this.teams = teams;
         return this;
     }
 }

@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "Organizer", description = "Organizer API")
+@Tag(name = "Free Tournament", description = "Free Tournament API")
 @RestController
 @RequestMapping("/api")
 public class FreeTournamentController {
