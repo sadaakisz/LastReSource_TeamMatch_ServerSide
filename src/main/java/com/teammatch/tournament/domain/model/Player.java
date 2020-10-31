@@ -41,6 +41,11 @@ public class Player extends Profile{
     @JsonIgnore
     private List<Team> teams;
 
+    @ManyToMany(fetch= FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name="player_filters", joinColumns = {@JoinColumn(name="player_id")}, inverseJoinColumns = {@JoinColumn(name="filter_id")})
+    @JsonIgnore
+    private List<Filter> filters;
+
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},
@@ -126,6 +131,13 @@ public class Player extends Profile{
 
     public Player setTeams(List<Team> teams) {
         this.teams = teams;
+        return this;
+    }
+
+    public List<Filter> getFilters(){return filters;}
+
+    public Player setFilters(List<Filter> filters) {
+        this.filters = filters;
         return this;
     }
 

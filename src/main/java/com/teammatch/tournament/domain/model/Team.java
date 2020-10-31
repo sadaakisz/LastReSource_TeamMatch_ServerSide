@@ -27,11 +27,17 @@ public class Team extends AuditModel {
     @NotNull
     private Float hoursPlayed;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    /*@ManyToMany(fetch = FetchType.LAZY,
             cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "team_players",
             joinColumns = {@JoinColumn(name = "team_id")},
             inverseJoinColumns = {@JoinColumn(name = "player_id")})
+    @JsonIgnore
+    private List<Player> players;*/
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "teams")
     @JsonIgnore
     private List<Player> players;
 
