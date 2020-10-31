@@ -13,7 +13,6 @@ public class SaveTeamResource {
     private String name;
 
     @NotNull
-    @NotBlank
     private int teamSize;
 
     @NotNull
