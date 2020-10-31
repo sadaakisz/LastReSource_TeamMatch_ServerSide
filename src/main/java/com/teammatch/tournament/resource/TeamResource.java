@@ -23,7 +23,7 @@ public class TeamResource extends AuditModel {
         return name;
     }
 
-    public TeamResource setTitle(String name) {
+    public TeamResource setName(String name) {
         this.name = name;
         return this;
     }
@@ -42,7 +42,7 @@ public class TeamResource extends AuditModel {
         return hoursPlayed;
     }
 
-    public TeamResource setContent(Float hoursPlayed) {
+    public TeamResource setHoursPlayed(Float hoursPlayed) {
         this.hoursPlayed = hoursPlayed;
         return this;
     }
