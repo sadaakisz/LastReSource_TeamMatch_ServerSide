@@ -46,6 +46,19 @@ public class PlayerServiceImpl implements PlayerService {
                         "Player", "Id", playerId));
     }
 
+    /*@Override
+    public Page<Player> getAllPlayersByFilterId(Long filterId, Pageable pageable) {
+        return playerRepository.findByFilterId(filterId, pageable);
+    }
+
+    @Override
+    public Player getPlayerByIdAndFilterId(Long filterId, Long playerId) {
+        return playerRepository.findByIdAndFilterId(playerId , filterId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Player not found with Id " + playerId +
+                                " and FilterId " + filterId));
+    }*/
+
     @Override
     public Player createPlayer(Player player) { return playerRepository.save(player); }
 

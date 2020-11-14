@@ -1,5 +1,6 @@
 package com.teammatch.tournament.controller;
 
+import com.teammatch.tournament.domain.model.FreeTournament;
 import com.teammatch.tournament.domain.model.Player;
 import com.teammatch.tournament.domain.model.Sponsor;
 import com.teammatch.tournament.domain.service.PlayerService;
@@ -43,6 +44,31 @@ public class PlayerController {
     public PlayerResource getPlayerById(@PathVariable(value = "playerId") Long playerId) {
         return convertToResource(playerService.getPlayerById(playerId));
     }
+
+    /*@GetMapping("/filters/{filterId}/players")
+    public Page<Player> getAllPlayersByFilterId(@PathVariable(value = "filterId") Long filterId, Pageable pageable){
+        Page<Player> playerPage= playerService.getAllPlayersByFilterId(filterId, pageable);
+        List<PlayerResource> resources = playerPage.getContent()
+                .stream().map(this::convertToResource)
+                .collect(Collectors.toList());
+        return new PageImpl(resources, pageable, resources.size());
+    }*/
+
+    /*@GetMapping("/filters/{filterId}/players")
+    public Page<PlayerResource> getAllPlayersByFilterId(
+            @PathVariable(name = "filterId") Long filterId,
+            Pageable pageable) {
+        List<PlayerResource> players = playerService.getAllPlayersByFreeTournamentId(filterId,pageable)
+                .getContent().stream().map(this::convertToResource)
+                .collect(Collectors.toList());
+        int playersCount = players.size();
+        return new PageImpl<>(players, pageable, playersCount);
+    }*/
+
+    /*@GetMapping("/filters/{filterId}/players/{playerId}")
+    public PlayerResource getPlayerByIdAndFilterId(@PathVariable(value = "filterId") Long filterId, @PathVariable (value = "playerId") Long playerId){
+        return convertToResource(playerService.getPlayerByIdAndFilterId(filterId, playerId));
+    }*/
 
     @PostMapping("/players")
     public PlayerResource createPlayer(
