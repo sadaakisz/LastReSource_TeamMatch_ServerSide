@@ -21,10 +21,8 @@ import java.util.stream.Collectors;
 public class MessageController {
     @Autowired
     private MessageService messageService;
-
     @Autowired
     private ModelMapper mapper;
-
     @GetMapping("/chats/{chatId}/messages")
     public Page<MessageResource> getAllMessagesByChatId(
             @PathVariable(value = "chatId") Long chatId,
@@ -34,44 +32,48 @@ public class MessageController {
                 .map(this::convertToResource).collect(Collectors.toList());
         return new PageImpl<>(resources, pageable, resources.size());
     }
-
     @GetMapping("/chats/{chatId}/messages/{messageId}")
-    public MessageResource getMessageByIdAndChatId(
-            @PathVariable(name = "chatId") Long chatId,
-            @PathVariable(name = "messageId") Long messageId) {
+    public MessageResource getMessageByIdAndChatId(@PathVariable(name = "chatId") Long chatId,
+                                                   @PathVariable(name = "messageId") Long messageId) {
         return convertToResource(messageService.getMessageByIdAndChatId(chatId, messageId));
     }
-
     @PostMapping("/chats/{chatId}/messages")
     public MessageResource createMessage(@PathVariable(value = "chatId") Long chatId,
                                          @Valid @RequestBody SaveMessageResource resource) {
-
         return convertToResource(messageService.createMessage(chatId,  convertToEntity(resource)));
     }
-
     @PutMapping("/chats/{chatId}/messages/{messageId}")
     public MessageResource updateMessage(@PathVariable (value = "chatId") Long chatId,
                                          @PathVariable (value = "messageId") Long messageId,
                                          @Valid @RequestBody SaveMessageResource resource) {
-
         return convertToResource(messageService.updateMessage(chatId, messageId,
                 convertToEntity(resource)));
     }
-
     @DeleteMapping("/chats/{chatId}/messages/{messageId}")
     public ResponseEntity<?> deleteComment(
             @PathVariable (value = "chatId") Long chatId,
             @PathVariable (value = "messageId") Long messageId) {
-        return messageService.deleteMessage(chatId, messageId);
-    }
-
+        return messageService.deleteMessage(chatId, messageId);   }
     private Message convertToEntity(SaveMessageResource resource) {
         return mapper.map(resource, Message.class);
     }
-
     private MessageResource convertToResource(Message entity) {
         return mapper.map(entity, MessageResource.class);
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
