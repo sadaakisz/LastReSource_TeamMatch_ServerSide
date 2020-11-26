@@ -16,6 +16,9 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements DefaultUserDetailsService {
     private static final String DEFAULT_USERNAME = "nick.reeves@gmail.com";
+    private static final String DEFAULT_USERNAME2 = "lily.pichu@hotmail.com";
+    private static final String DEFAULT_USERNAME3 = "frank.wild@natgeo.com";
+
     private static final List<GrantedAuthority> DEFAULT_AUTHORITIES = new ArrayList<>();
 
     @Autowired
@@ -41,7 +44,12 @@ public class UserDetailsServiceImpl implements DefaultUserDetailsService {
         if(DEFAULT_USERNAME.equals(username)) {
             return new User(DEFAULT_USERNAME, defaultPassword, DEFAULT_AUTHORITIES);
         }
+        if(DEFAULT_USERNAME2.equals(username)) {
+            return new User(DEFAULT_USERNAME2, defaultPassword, DEFAULT_AUTHORITIES);
+        }
+        if(DEFAULT_USERNAME3.equals(username)) {
+            return new User(DEFAULT_USERNAME3, defaultPassword, DEFAULT_AUTHORITIES);
+        }
         throw new UsernameNotFoundException(String.format("User not found with username %s", username));
-
     }
 }
