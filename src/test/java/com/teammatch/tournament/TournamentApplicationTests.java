@@ -7,9 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
-@Configuration
-@ComponentScan(basePackages ="com.teammatch.tournament")
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes =TournamentApplication.class )
 class TournamentApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
 
 }
