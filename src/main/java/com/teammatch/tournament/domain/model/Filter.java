@@ -32,6 +32,12 @@ public class Filter extends AuditModel{
     @NotNull
     private Float rating;
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "filters")
+    @JsonIgnore
+    private List<Player> players;
+
     public Long getId() {
         return id;
     }
@@ -80,6 +86,13 @@ public class Filter extends AuditModel{
 
     public Filter setRating(Float rating){
         this.rating = rating;
+        return this;
+    }
+
+    public List<Player> getPlayer() {return players;}
+
+    public Filter setPlayer(List<Player> players){
+        this.players = players;
         return this;
     }
 

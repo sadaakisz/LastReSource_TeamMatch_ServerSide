@@ -21,4 +21,7 @@ public interface PlayerService {
     Page<Player> getAllPlayersByFreeTournamentId(Long freeTournamentId, Pageable pageable);
     Page<Player> getAllPlayersByProfessionalTournamentId(Long professionalTournamentId, Pageable pageable);
     Page<Player> getAllPlayersByTournamentMoreEnrollmentId(Long tournamentMoreEnrollmentId, Pageable pageable);
+
+    /*Page<Player>getAllPlayersByFilterId(Long filterId, Pageable pageable);
+    Player getPlayerByIdAndFilterId(Long playerId, Long filterId);*/
 }
