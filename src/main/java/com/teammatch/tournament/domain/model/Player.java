@@ -66,6 +66,17 @@ public class Player extends Profile{
     @JsonIgnore
     private List<TournamentMoreEnrollment> tournamentMoreEnrollments;
 
+    public Player() {
+    }
+
+    public Player(@NotNull String username, @NotNull String password, @NotNull Integer level, @NotNull Integer hoursPlayed, @NotNull Float killDeathRatio) {
+        this.username = username;
+        this.password = password;
+        this.level = level;
+        this.hoursPlayed = hoursPlayed;
+        this.killDeathRatio = killDeathRatio;
+    }
+
 
     public boolean isInChat(Chat chat){       // Business methods
         return (this.getChats().contains(chat));
