@@ -22,13 +22,12 @@ public class MessageServiceImpl implements MessageService {
     public Page<Message> getAllMessagesByChatId(Long chatId, Pageable pageable) {
         return messageRepository.findByChatId(chatId, pageable);
     }
-
     @Override
     public Message getMessageByIdAndChatId(Long chatId, Long messageId) {
         return messageRepository.findByIdAndChatId(messageId, chatId)
-                .orElseThrow(() -> new ResourceNotFoundException( "Message not found with Id " + messageId + " and ChatId " + chatId));
+                .orElseThrow(() -> new ResourceNotFoundException
+                        ( "Message not found with Id " + messageId + " and ChatId " + chatId));
     }
-
     @Override
     public Message createMessage(Long chatId, Message message) {
         return chatRepository.findById(chatId).map(chat -> {
@@ -36,7 +35,6 @@ public class MessageServiceImpl implements MessageService {
             return messageRepository.save(message);
         }).orElseThrow(() -> new ResourceNotFoundException( "Chat", "Id", chatId));
     }
-
     @Override
     public Message updateMessage(Long chatId, Long messageId, Message messageRequest) {
         if(!chatRepository.existsById(chatId))
@@ -48,7 +46,6 @@ public class MessageServiceImpl implements MessageService {
             return messageRepository.save(message);
         }).orElseThrow(()-> new ResourceNotFoundException("Message" + "Id" + messageId ));
     }
-
     @Override
     public ResponseEntity<?> deleteMessage(Long chatId, Long messageId) {
         return messageRepository.findByIdAndChatId(messageId, chatId).map(message -> {

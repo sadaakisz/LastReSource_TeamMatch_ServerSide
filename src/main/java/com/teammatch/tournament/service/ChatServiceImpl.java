@@ -16,12 +16,10 @@ import java.util.List;
 
 @Service
 public class ChatServiceImpl implements ChatService{
-
     @Autowired
     private ChatRepository chatRepository;
     @Autowired
     private PlayerRepository playerRepository;
-
 
     @Override
     public Page<Chat> getAllChats(Pageable pageable) {
