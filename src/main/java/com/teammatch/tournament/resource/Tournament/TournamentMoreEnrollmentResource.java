@@ -1,7 +1,6 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Tournament;
 
 import com.teammatch.tournament.domain.model.AuditModel;
-import com.teammatch.tournament.domain.model.Tournament;
 
 import java.util.Date;
 

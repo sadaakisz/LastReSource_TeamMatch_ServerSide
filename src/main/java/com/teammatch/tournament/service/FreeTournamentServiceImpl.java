@@ -1,11 +1,9 @@
 package com.teammatch.tournament.service;
 
-import com.teammatch.tournament.domain.model.Chat;
 import com.teammatch.tournament.domain.model.FreeTournament;
 import com.teammatch.tournament.domain.model.Player;
-import com.teammatch.tournament.domain.model.Tournament;
 import com.teammatch.tournament.domain.repository.OrganizerRepository;
-import com.teammatch.tournament.domain.repository.FreeTournamentRepository;
+import com.teammatch.tournament.domain.repository.Tournament.FreeTournamentRepository;
 import com.teammatch.tournament.domain.repository.PlayerRepository;
 import com.teammatch.tournament.domain.service.FreeTournamentService;
 import com.teammatch.tournament.exception.ResourceNotFoundException;

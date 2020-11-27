@@ -2,8 +2,8 @@ package com.teammatch.tournament.controller;
 
 import com.teammatch.tournament.domain.model.Organizer;
 import com.teammatch.tournament.domain.service.OrganizerService;
-import com.teammatch.tournament.resource.OrganizerResource;
-import com.teammatch.tournament.resource.SaveOrganizerResource;
+import com.teammatch.tournament.resource.Organizer.OrganizerResource;
+import com.teammatch.tournament.resource.Organizer.SaveOrganizerResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

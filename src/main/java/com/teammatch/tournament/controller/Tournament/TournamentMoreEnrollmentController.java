@@ -1,13 +1,9 @@
-package com.teammatch.tournament.controller;
+package com.teammatch.tournament.controller.Tournament;
 
-import com.teammatch.tournament.domain.model.FreeTournament;
 import com.teammatch.tournament.domain.model.TournamentMoreEnrollment;
-import com.teammatch.tournament.domain.service.FreeTournamentService;
 import com.teammatch.tournament.domain.service.TournamentMoreEnrollmentService;
-import com.teammatch.tournament.resource.FreeTournamentResource;
-import com.teammatch.tournament.resource.SaveFreeTournamentResource;
-import com.teammatch.tournament.resource.SaveTournamentMoreEnrollmentResource;
-import com.teammatch.tournament.resource.TournamentMoreEnrollmentResource;
+import com.teammatch.tournament.resource.Tournament.SaveTournamentMoreEnrollmentResource;
+import com.teammatch.tournament.resource.Tournament.TournamentMoreEnrollmentResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

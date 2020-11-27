@@ -1,12 +1,12 @@
-package com.teammatch.tournament.controller;
+package com.teammatch.tournament.controller.Tournament;
 
 import com.teammatch.tournament.domain.model.FreeTournament;
 import com.teammatch.tournament.domain.model.Player;
 import com.teammatch.tournament.domain.service.FreeTournamentService;
 import com.teammatch.tournament.domain.service.PlayerService;
-import com.teammatch.tournament.resource.FreeTournamentResource;
+import com.teammatch.tournament.resource.Tournament.FreeTournamentResource;
 import com.teammatch.tournament.resource.PlayerResource;
-import com.teammatch.tournament.resource.SaveFreeTournamentResource;
+import com.teammatch.tournament.resource.Tournament.SaveFreeTournamentResource;
 import com.teammatch.tournament.resource.SavePlayerResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;

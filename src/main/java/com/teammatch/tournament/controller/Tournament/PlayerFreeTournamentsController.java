@@ -1,9 +1,9 @@
-package com.teammatch.tournament.controller;
+package com.teammatch.tournament.controller.Tournament;
 
 import com.teammatch.tournament.domain.model.FreeTournament;
 import com.teammatch.tournament.domain.service.FreeTournamentService;
-import com.teammatch.tournament.resource.FreeTournamentResource;
-import com.teammatch.tournament.resource.SaveFreeTournamentResource;
+import com.teammatch.tournament.resource.Tournament.FreeTournamentResource;
+import com.teammatch.tournament.resource.Tournament.SaveFreeTournamentResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

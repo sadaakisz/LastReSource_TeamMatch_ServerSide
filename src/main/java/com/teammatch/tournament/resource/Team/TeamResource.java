@@ -1,7 +1,6 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Team;
 
 import com.teammatch.tournament.domain.model.AuditModel;
-import com.teammatch.tournament.domain.model.Team;
 
 public class TeamResource extends AuditModel {
     private Long id;

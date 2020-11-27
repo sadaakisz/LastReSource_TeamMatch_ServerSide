@@ -1,10 +1,12 @@
-package com.teammatch.tournament.controller;
+package com.teammatch.tournament.controller.Tournament;
 
 import com.teammatch.tournament.domain.model.Player;
 import com.teammatch.tournament.domain.model.ProfessionalTournament;
 import com.teammatch.tournament.domain.service.PlayerService;
 import com.teammatch.tournament.domain.service.ProfessionalTournamentService;
 import com.teammatch.tournament.resource.*;
+import com.teammatch.tournament.resource.Tournament.ProfessionalTournamentResource;
+import com.teammatch.tournament.resource.Tournament.SaveProfessionalTournamentResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

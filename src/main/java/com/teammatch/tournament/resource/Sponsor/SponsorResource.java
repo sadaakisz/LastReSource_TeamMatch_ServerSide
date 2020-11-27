@@ -1,4 +1,4 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Sponsor;
 
 import com.teammatch.tournament.domain.model.AuditModel;
 

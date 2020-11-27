@@ -1,13 +1,12 @@
-package com.teammatch.tournament.resource;
-
-import com.teammatch.tournament.domain.model.AuditModel;
+package com.teammatch.tournament.resource.Tournament;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-public class SaveProfessionalTournamentResource  {
+public class SaveFreeTournamentResource {
+
     @NotNull(message = "Missing Tournament name")
     @NotBlank
     @Size(min = 3, message = "Name needs to have between 3 to 50 characters")
@@ -27,20 +26,24 @@ public class SaveProfessionalTournamentResource  {
     @NotNull
     private Integer maxTeams;
 
+
     public String getName() {
         return name;
     }
 
-    public SaveProfessionalTournamentResource setName(String name) {
+    public SaveFreeTournamentResource setName(String name) {
         this.name = name;
         return this;
     }
+
+
+
 
     public String getDescription() {
         return description;
     }
 
-    public SaveProfessionalTournamentResource setDescription(String description) {
+    public SaveFreeTournamentResource setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -49,7 +52,7 @@ public class SaveProfessionalTournamentResource  {
         return prize;
     }
 
-    public SaveProfessionalTournamentResource setPrize(String prize) {
+    public SaveFreeTournamentResource setPrize(String prize) {
         this.prize = prize;
         return this;
     }
@@ -58,7 +61,7 @@ public class SaveProfessionalTournamentResource  {
         return publicTournament;
     }
 
-    public SaveProfessionalTournamentResource setPublicTournament(Boolean publicTournament) {
+    public SaveFreeTournamentResource setPublicTournament(Boolean publicTournament) {
         this.publicTournament = publicTournament;
         return this;
     }
@@ -67,7 +70,7 @@ public class SaveProfessionalTournamentResource  {
         return code;
     }
 
-    public SaveProfessionalTournamentResource setCode(String code) {
+    public SaveFreeTournamentResource setCode(String code) {
         this.code = code;
         return this;
     }
@@ -76,7 +79,7 @@ public class SaveProfessionalTournamentResource  {
         return dateOfTournament;
     }
 
-    public SaveProfessionalTournamentResource setDateOfTournament(Date dateOfTournament) {
+    public SaveFreeTournamentResource setDateOfTournament(Date dateOfTournament) {
         this.dateOfTournament = dateOfTournament;
         return this;
     }
@@ -85,8 +88,9 @@ public class SaveProfessionalTournamentResource  {
         return maxTeams;
     }
 
-    public SaveProfessionalTournamentResource setMaxTeams(Integer maxTeams) {
+    public SaveFreeTournamentResource setMaxTeams(Integer maxTeams) {
         this.maxTeams = maxTeams;
         return this;
     }
 }
+

@@ -1,26 +1,28 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Tournament;
 
 import com.teammatch.tournament.domain.model.AuditModel;
 
 import java.util.Date;
 
-public class ProfessionalTournamentResource extends AuditModel {
+public class FreeTournamentResource extends AuditModel {
+
     private Long id;
     private String name;
 
     private String description;
 
     private String prize;
-    private Boolean publicTournament;
+   private Boolean publicTournament;
     private String code;
     private Date dateOfTournament;
     private Integer maxTeams;
+
 
     public Long getId() {
         return id;
     }
 
-    public ProfessionalTournamentResource setId(Long id) {
+    public FreeTournamentResource setId(Long id) {
         this.id = id;
         return this;
     }
@@ -29,16 +31,20 @@ public class ProfessionalTournamentResource extends AuditModel {
         return name;
     }
 
-    public ProfessionalTournamentResource setName(String name) {
+    public FreeTournamentResource setName(String name) {
         this.name = name;
         return this;
     }
+
+
+
+
 
     public String getDescription() {
         return description;
     }
 
-    public ProfessionalTournamentResource setDescription(String description) {
+    public FreeTournamentResource setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -47,7 +53,7 @@ public class ProfessionalTournamentResource extends AuditModel {
         return prize;
     }
 
-    public ProfessionalTournamentResource setPrize(String prize) {
+    public FreeTournamentResource setPrize(String prize) {
         this.prize = prize;
         return this;
     }
@@ -56,7 +62,7 @@ public class ProfessionalTournamentResource extends AuditModel {
         return publicTournament;
     }
 
-    public ProfessionalTournamentResource setPublicTournament(Boolean publicTournament) {
+    public FreeTournamentResource setPublicTournament(Boolean publicTournament) {
         this.publicTournament = publicTournament;
         return this;
     }
@@ -65,7 +71,7 @@ public class ProfessionalTournamentResource extends AuditModel {
         return code;
     }
 
-    public ProfessionalTournamentResource setCode(String code) {
+    public FreeTournamentResource setCode(String code) {
         this.code = code;
         return this;
     }
@@ -74,7 +80,7 @@ public class ProfessionalTournamentResource extends AuditModel {
         return dateOfTournament;
     }
 
-    public ProfessionalTournamentResource setDateOfTournament(Date dateOfTournament) {
+    public FreeTournamentResource setDateOfTournament(Date dateOfTournament) {
         this.dateOfTournament = dateOfTournament;
         return this;
     }
@@ -83,7 +89,7 @@ public class ProfessionalTournamentResource extends AuditModel {
         return maxTeams;
     }
 
-    public ProfessionalTournamentResource setMaxTeams(Integer maxTeams) {
+    public FreeTournamentResource setMaxTeams(Integer maxTeams) {
         this.maxTeams = maxTeams;
         return this;
     }

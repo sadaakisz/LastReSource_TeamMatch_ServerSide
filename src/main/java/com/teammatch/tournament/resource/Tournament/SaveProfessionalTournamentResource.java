@@ -1,51 +1,44 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Tournament;
 
-import com.teammatch.tournament.domain.model.AuditModel;
-
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
-public class FreeTournamentResource extends AuditModel {
-
-    private Long id;
+public class SaveProfessionalTournamentResource  {
+    @NotNull(message = "Missing Tournament name")
+    @NotBlank
+    @Size(min = 3, message = "Name needs to have between 3 to 50 characters")
     private String name;
 
+
+
     private String description;
-
+    @NotNull
     private String prize;
-   private Boolean publicTournament;
+
+    private Boolean publicTournament;
+    @NotNull
     private String code;
+
     private Date dateOfTournament;
+    @NotNull
     private Integer maxTeams;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public FreeTournamentResource setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getName() {
         return name;
     }
 
-    public FreeTournamentResource setName(String name) {
+    public SaveProfessionalTournamentResource setName(String name) {
         this.name = name;
         return this;
     }
-
-
-
-
 
     public String getDescription() {
         return description;
     }
 
-    public FreeTournamentResource setDescription(String description) {
+    public SaveProfessionalTournamentResource setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -54,7 +47,7 @@ public class FreeTournamentResource extends AuditModel {
         return prize;
     }
 
-    public FreeTournamentResource setPrize(String prize) {
+    public SaveProfessionalTournamentResource setPrize(String prize) {
         this.prize = prize;
         return this;
     }
@@ -63,7 +56,7 @@ public class FreeTournamentResource extends AuditModel {
         return publicTournament;
     }
 
-    public FreeTournamentResource setPublicTournament(Boolean publicTournament) {
+    public SaveProfessionalTournamentResource setPublicTournament(Boolean publicTournament) {
         this.publicTournament = publicTournament;
         return this;
     }
@@ -72,7 +65,7 @@ public class FreeTournamentResource extends AuditModel {
         return code;
     }
 
-    public FreeTournamentResource setCode(String code) {
+    public SaveProfessionalTournamentResource setCode(String code) {
         this.code = code;
         return this;
     }
@@ -81,7 +74,7 @@ public class FreeTournamentResource extends AuditModel {
         return dateOfTournament;
     }
 
-    public FreeTournamentResource setDateOfTournament(Date dateOfTournament) {
+    public SaveProfessionalTournamentResource setDateOfTournament(Date dateOfTournament) {
         this.dateOfTournament = dateOfTournament;
         return this;
     }
@@ -90,7 +83,7 @@ public class FreeTournamentResource extends AuditModel {
         return maxTeams;
     }
 
-    public FreeTournamentResource setMaxTeams(Integer maxTeams) {
+    public SaveProfessionalTournamentResource setMaxTeams(Integer maxTeams) {
         this.maxTeams = maxTeams;
         return this;
     }

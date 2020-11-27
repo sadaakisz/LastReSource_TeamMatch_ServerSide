@@ -2,8 +2,8 @@ package com.teammatch.tournament.controller;
 
 import com.teammatch.tournament.domain.model.Sponsor;
 import com.teammatch.tournament.domain.service.SponsorService;
-import com.teammatch.tournament.resource.SaveSponsorResource;
-import com.teammatch.tournament.resource.SponsorResource;
+import com.teammatch.tournament.resource.Sponsor.SaveSponsorResource;
+import com.teammatch.tournament.resource.Sponsor.SponsorResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

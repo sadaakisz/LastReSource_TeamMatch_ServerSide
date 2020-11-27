@@ -1,11 +1,9 @@
 package com.teammatch.tournament.service;
 
-import com.teammatch.tournament.domain.model.FreeTournament;
 import com.teammatch.tournament.domain.model.ProfessionalTournament;
 import com.teammatch.tournament.domain.model.Sponsor;
-import com.teammatch.tournament.domain.repository.ProfessionalTournamentRepository;
+import com.teammatch.tournament.domain.repository.Tournament.ProfessionalTournamentRepository;
 import com.teammatch.tournament.domain.repository.SponsorRepository;
-import com.teammatch.tournament.domain.repository.FreeTournamentRepository;
 import com.teammatch.tournament.domain.service.SponsorService;
 import com.teammatch.tournament.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,49 +1,44 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Tournament;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import com.teammatch.tournament.domain.model.AuditModel;
+
 import java.util.Date;
 
-public class SaveFreeTournamentResource {
-
-    @NotNull(message = "Missing Tournament name")
-    @NotBlank
-    @Size(min = 3, message = "Name needs to have between 3 to 50 characters")
+public class ProfessionalTournamentResource extends AuditModel {
+    private Long id;
     private String name;
 
-
-
     private String description;
-    @NotNull
+
     private String prize;
-
     private Boolean publicTournament;
-    @NotNull
     private String code;
-
     private Date dateOfTournament;
-    @NotNull
     private Integer maxTeams;
 
+    public Long getId() {
+        return id;
+    }
+
+    public ProfessionalTournamentResource setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getName() {
         return name;
     }
 
-    public SaveFreeTournamentResource setName(String name) {
+    public ProfessionalTournamentResource setName(String name) {
         this.name = name;
         return this;
     }
-
-
-
 
     public String getDescription() {
         return description;
     }
 
-    public SaveFreeTournamentResource setDescription(String description) {
+    public ProfessionalTournamentResource setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -52,7 +47,7 @@ public class SaveFreeTournamentResource {
         return prize;
     }
 
-    public SaveFreeTournamentResource setPrize(String prize) {
+    public ProfessionalTournamentResource setPrize(String prize) {
         this.prize = prize;
         return this;
     }
@@ -61,7 +56,7 @@ public class SaveFreeTournamentResource {
         return publicTournament;
     }
 
-    public SaveFreeTournamentResource setPublicTournament(Boolean publicTournament) {
+    public ProfessionalTournamentResource setPublicTournament(Boolean publicTournament) {
         this.publicTournament = publicTournament;
         return this;
     }
@@ -70,7 +65,7 @@ public class SaveFreeTournamentResource {
         return code;
     }
 
-    public SaveFreeTournamentResource setCode(String code) {
+    public ProfessionalTournamentResource setCode(String code) {
         this.code = code;
         return this;
     }
@@ -79,7 +74,7 @@ public class SaveFreeTournamentResource {
         return dateOfTournament;
     }
 
-    public SaveFreeTournamentResource setDateOfTournament(Date dateOfTournament) {
+    public ProfessionalTournamentResource setDateOfTournament(Date dateOfTournament) {
         this.dateOfTournament = dateOfTournament;
         return this;
     }
@@ -88,9 +83,8 @@ public class SaveFreeTournamentResource {
         return maxTeams;
     }
 
-    public SaveFreeTournamentResource setMaxTeams(Integer maxTeams) {
+    public ProfessionalTournamentResource setMaxTeams(Integer maxTeams) {
         this.maxTeams = maxTeams;
         return this;
     }
 }
-

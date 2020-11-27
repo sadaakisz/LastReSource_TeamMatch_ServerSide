@@ -1,48 +1,74 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Organizer;
 
-import com.teammatch.tournament.domain.model.AuditModel;
-import org.hibernate.annotations.NaturalId;
+import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
 import javax.persistence.Lob;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-public class OrganizerResource extends AuditModel {
+public class SaveOrganizerResource {
 
-    private Long id;
+    @NotNull(message = "Missing Organizer name")
+    @NotBlank
+    @Length(min = 3, message = "Name needs to have between 3 to 50 characters")
     private String username;
 
+    @NotNull(message = "Missing password")
+    @Length(min = 6, max = 16, message = "Password needs to have between 3 to 50 characters")
+    private String password;
+    @NotNull
     private String firstName;
 
-
+    @NotNull
     private String lastName;
 
+
+    @Lob
     private String description;
 
+    @NotNull
     private String gender;
 
+    @NotNull
+    @Size(max = 100)
     private String emailAddress;
 
+    @NotNull
     private String phoneNumber;
 
-    private Date birthDate;
-    public Long getId() {
-        return id;
-    }
 
-    public OrganizerResource setId(Long id) {
-        this.id = id;
-        return this;
-    }
+    private Date birthDate;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public String getUsername() {
         return username;
     }
 
-    public OrganizerResource setUsername(String username) {
+    public SaveOrganizerResource setUsername(String username) {
         this.username = username;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public SaveOrganizerResource setPassword(String password) {
+        this.password = password;
         return this;
     }
 
@@ -50,7 +76,7 @@ public class OrganizerResource extends AuditModel {
         return firstName;
     }
 
-    public OrganizerResource setFirstName(String firstName) {
+    public SaveOrganizerResource setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -59,7 +85,7 @@ public class OrganizerResource extends AuditModel {
         return lastName;
     }
 
-    public OrganizerResource setLastName(String lastName) {
+    public SaveOrganizerResource setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -68,7 +94,7 @@ public class OrganizerResource extends AuditModel {
         return description;
     }
 
-    public OrganizerResource setDescription(String description) {
+    public SaveOrganizerResource setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -77,7 +103,7 @@ public class OrganizerResource extends AuditModel {
         return gender;
     }
 
-    public OrganizerResource setGender(String gender) {
+    public SaveOrganizerResource setGender(String gender) {
         this.gender = gender;
         return this;
     }
@@ -86,7 +112,7 @@ public class OrganizerResource extends AuditModel {
         return emailAddress;
     }
 
-    public OrganizerResource setEmailAddress(String emailAddress) {
+    public SaveOrganizerResource setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
         return this;
     }
@@ -95,7 +121,7 @@ public class OrganizerResource extends AuditModel {
         return phoneNumber;
     }
 
-    public OrganizerResource setPhoneNumber(String phoneNumber) {
+    public SaveOrganizerResource setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
@@ -104,7 +130,7 @@ public class OrganizerResource extends AuditModel {
         return birthDate;
     }
 
-    public OrganizerResource setBirthDate(Date birthDate) {
+    public SaveOrganizerResource setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
         return this;
     }

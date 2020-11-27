@@ -1,4 +1,4 @@
-package com.teammatch.tournament.domain.repository;
+package com.teammatch.tournament.domain.repository.Tournament;
 import com.teammatch.tournament.domain.model.FreeTournament;
 import com.teammatch.tournament.domain.model.Tournament;
 import org.springframework.data.domain.Page;

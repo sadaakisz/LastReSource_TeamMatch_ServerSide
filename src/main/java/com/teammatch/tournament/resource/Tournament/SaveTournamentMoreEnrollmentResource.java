@@ -1,4 +1,4 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Tournament;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

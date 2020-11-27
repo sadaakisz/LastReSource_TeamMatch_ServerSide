@@ -1,6 +1,5 @@
-package com.teammatch.tournament.resource;
+package com.teammatch.tournament.resource.Team;
 
-import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
